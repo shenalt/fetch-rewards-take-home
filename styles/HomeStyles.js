@@ -56,6 +56,7 @@ export const FormStyles = styled(motion.form)`
         margin-top: 1.2rem;
         margin-bottom: 1.2rem;
         background: #F9F8F9;
+        color: black;
         :hover{
             background: #FFA900;
             animation: shake 0.75s ease-in forwards;
@@ -83,6 +84,12 @@ export const FormStyles = styled(motion.form)`
     @media screen and (max-width: 425px) {
         .text-inputs{
             font-size: 1.2rem;
+        }
+        .submitBtn {
+            padding: 1.2rem 3.2rem;
+        }
+        select {
+            padding: 1rem;
         }
     }
 `;
