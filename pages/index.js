@@ -3,25 +3,10 @@ import Image from 'next/image';
 import { HomePageStyles, FormStyles, ImgContainer } from '@/styles/HomeStyles';
 import { useState, useEffect } from 'react';
 import fetchLogo from '../public/fetch-logo.png';
-import { toast } from 'react-hot-toast';
-const {motion} = require('framer-motion');
-
+import { notify } from '@/utils/notify';
 // Animation Variants
-const input = {
-  hidden: { opacity: 0, scale: 0.25 },
-  show: { opacity: 1, scale: 1 },
-};
-
-const inputs = {
-  hidden: { opacity: 0 },
-  show: {
-      opacity: 1,
-      transition: {
-          delayChildren: 0.5,
-          staggerChildren: 0.1,
-      },
-  },
-};
+import { input, inputs } from '@/styles/animations';
+const {motion} = require('framer-motion');
 
 export default function Home() {
   const [data, setData] = useState(null)
@@ -43,16 +28,6 @@ export default function Home() {
   // Store the data in variables to use for the selections
   const occupations = data.occupations;
   const states = data.states;  
-
-  // Create a toast
-  const notify = (isSuccess) => {
-    if(isSuccess){
-      toast.success("Form Successfully Submitted!");
-    }
-    else{
-      toast.error("Something Went Wrong!");
-    }
-  }
   
   // Handles the submit event on form submit.
   const handleSubmit = async (event) => {
@@ -85,7 +60,7 @@ export default function Home() {
     }
     // Send the form data to fetch form API and get a response
     const response = await fetch(endpoint, options)
-    // If POST successful, show success toast
+    // If POST successful, show success toast else show failure toast
     if(response.status === 201){
       notify(true);
     }
